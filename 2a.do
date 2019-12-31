@@ -1,12 +1,12 @@
-*Assignment 2(a)
+//Assignment 2(a)
 
-*table one
+//table one
 
-*table one (whole sample)
+//table one (whole sample)
 
 sum afqt89 hsdeg hgcomp marit_93 hhwage93 pov_93 rwage_93 netass93[iweight=wgt]
 
-*table one (other parental structure (two_bio = 0))
+//table one (other parental structure (two_bio = 0))
 
 sort two_bio
 
@@ -16,15 +16,15 @@ netass93[iweight=wgt]
 gen white = (1 - black - hispanic) 
 gen male = (1 - female)
 
-*table two
-*missing(Foreign language)
+//table two
+//missing(Foreign language)
 
 sum white black hispanic male female age dad_lhs dad_ghs mom_lhs mom_ghs /// 
 momrborn dadrborn drunkdad drunkmom siblings cob_usa[iweight=wgt]
 sum l_biomom l_biodad
 
-*table two (other parental structure(two_bio = 0)) 
-*missing(Foreign language at home during childhood)
+//table two (other parental structure(two_bio = 0)) 
+//missing(Foreign language at home during childhood)
 
 sort two_bio
 
@@ -32,7 +32,7 @@ by two_bio: sum white black hispanic male female age dad_lhs dad_ghs mom_lhs ///
 mom_ghs momrborn dadrborn drunkdad drunkmom siblings cob_usa [iweight=wgt]
 by two_bio: sum l_biomom l_biodad
 
-*generate new variables for table three and four 
+//generate new variables for table three and four 
 
 gen regon_dum = 0
 replace regon_dum = regon_93 if regon_93 >= 0
@@ -43,14 +43,14 @@ gen rwage93 = rwage_93/1000
 gen hhwage_93 = hhwage/1000
 gen netass_93 = netass/10000
 
-*table three (male)
+//table three (male)
 
-*AFQT Score (1)
+//AFQT Score (1)
 
 reg afqt89 lbiomom lbiodad [iweight=wgt] if male, robust 
 eststo
 
-*AfQT Score (2)
+//AfQT Score (2)
 
 reg afqt89 lbiomom lbiodad isib black hispanic age imomborn idadborn drunkdad /// 
 drunkmom imom_lhs imom_ghs idad_lhs idad_ghs cob_usa i.regon_dum [iweight=wgt] ///
@@ -58,13 +58,13 @@ if male, robust
 
 eststo
 
-*Highest Grade completed (3)
+//Highest Grade completed (3)
 
 reg hgcomp lbiomom lbiodad [iweight=wgt] if male, robust 
 
 eststo
 
-* Highest Grade completed (4)
+//Highest Grade completed (4)
 
 reg hgcomp lbiomom lbiodad afqt89 isib black hispanic age imomborn idadborn /// 
 drunkdad drunkmom imom_lhs imom_ghs idad_lhs idad_ghs cob_usa ///
@@ -72,13 +72,13 @@ i.regon_dum [iweight=wgt] if male, robust
 
 eststo
 
-*Married 1993 (5)
+//Married 1993 (5)
 
 reg marit93 lbiomom lbiodad [iweight=wgt] if male, robust 
 
 eststo
 
-* Married 1993 (6)
+//Married 1993 (6)
 
 reg marit93 lbiomom lbiodad afqt89 hgcomp isib black hispanic age imomborn /// 
 idadborn drunkdad drunkmom imom_lhs imom_ghs idad_lhs idad_ghs cob_usa /// 
@@ -86,13 +86,13 @@ i.regon_dum [iweight=wgt] if male, robust
 
 eststo
 
-*1993 Annual Wage (7)
+//1993 Annual Wage (7)
 
 reg rwage93 lbiomom lbiodad [iweight=wgt] if male, robust 
 
 eststo
 
- * 1993 Annual Wage (8)
+//1993 Annual Wage (8)
 
 reg rwage93 lbiomom lbiodad afqt89 hgcomp isib black hispanic age imomborn /// 
 idadborn drunkdad drunkmom imom_lhs imom_ghs idad_lhs idad_ghs cob_usa /// 
@@ -100,13 +100,13 @@ i.regon_dum [iweight=wgt] if male, robust
 
 eststo
 
-*1993 Family Income (9)
+//1993 Family Income (9)
 
 reg hhwage_93 lbiomom lbiodad [iweight=wgt] if male, robust 
 
 eststo
 
-* 1993 Family Income (10)
+//1993 Family Income (10)
 
 reg hhwage_93 lbiomom lbiodad afqt89 hgcomp isib black hispanic age imomborn /// 
 idadborn drunkdad drunkmom imom_lhs imom_ghs idad_lhs idad_ghs cob_usa /// 
@@ -114,13 +114,13 @@ i.regon_dum [iweight=wgt] if male, robust
 
 eststo
 
-*1993 Wealth (11)
+//1993 Wealth (11)
 
 reg netass_93 lbiomom lbiodad [iweight=wgt] if male, robust 
 
 eststo
 
-* 1993 Wealth (12)
+//1993 Wealth (12)
 
 reg netass_93 lbiomom lbiodad afqt89 hgcomp isib black hispanic age imomborn /// 
 idadborn drunkdad drunkmom imom_lhs imom_ghs idad_lhs idad_ghs cob_usa /// 
@@ -128,21 +128,23 @@ i.regon_dum [iweight=wgt] if male, robust
 
 eststo
 
-*table three
+//table three
 
 esttab, r2 se
 
 eststo clear
 
-*table four
 
-*AFQT Score (1)
+//table four
+
+
+//AFQT Score (1)
 
 reg afqt89 lbiomom lbiodad [iweight=wgt] if female, robust 
 
 eststo
 
-*AfQT Score (2)
+//AfQT Score (2)
 
 reg afqt89 lbiomom lbiodad isib black hispanic age imomborn idadborn /// 
 drunkdad drunkmom imom_lhs imom_ghs idad_lhs idad_ghs cob_usa /// 
@@ -150,13 +152,13 @@ i.regon_dum [iweight=wgt] if female, robust
 
 eststo
 
-*Highest Grade completed (3)
+//Highest Grade completed (3)
 
 reg hgcomp lbiomom lbiodad [iweight=wgt] if female, robust
 
 eststo
 
-* Highest Grade completed (4)
+//Highest Grade completed (4)
 
 reg hgcomp lbiomom lbiodad afqt89 isib black hispanic age imomborn ///
 idadborn drunkdad drunkmom imom_lhs imom_ghs idad_lhs idad_ghs cob_usa /// 
@@ -164,13 +166,13 @@ i.regon_dum [iweight=wgt] if female, robust
 
 eststo
 
-*Married 1993 (5)
+//Married 1993 (5)
 
 reg marit93 lbiomom lbiodad [iweight=wgt] if female, robust 
 
 eststo
 
-* Married 1993 (6)
+//Married 1993 (6)
 
 reg marit93 lbiomom lbiodad afqt89 hgcomp isib black hispanic age imomborn ///
 idadborn drunkdad drunkmom imom_lhs imom_ghs idad_lhs idad_ghs cob_usa /// 
@@ -178,13 +180,13 @@ i.regon_dum [iweight=wgt] if female, robust
 
 eststo
 
-*1993 Annual Wage (7)
+//1993 Annual Wage (7)
 
 reg rwage93 lbiomom lbiodad [iweight=wgt] if female, robust 
 
 eststo
 
-* 1993 Annual Wage (8)
+//1993 Annual Wage (8)
 
 reg rwage93 lbiomom lbiodad afqt89 hgcomp isib black hispanic age imomborn /// 
 idadborn drunkdad drunkmom imom_lhs imom_ghs idad_lhs idad_ghs cob_usa /// 
@@ -192,13 +194,13 @@ i.regon_dum [iweight=wgt] if female, robust
 
 eststo
 
-*1993 Family Income (9)
+//1993 Family Income (9)
 
 reg hhwage_93 lbiomom lbiodad [iweight=wgt] if female, robust 
 
 eststo
 
-* 1993 Family Income (10)
+//1993 Family Income (10)
 
 reg hhwage_93 lbiomom lbiodad afqt89 hgcomp isib black hispanic age imomborn /// 
 idadborn drunkdad drunkmom imom_lhs imom_ghs idad_lhs idad_ghs cob_usa /// 
@@ -206,26 +208,28 @@ i.regon_dum [iweight=wgt] if female, robust
 
 eststo
 
-*1993 Wealth (11)
+//1993 Wealth (11)
 
 reg netass_93 lbiomom lbiodad [iweight=wgt] if female, robust 
 
 eststo
 
-* 1993 Wealth (12)
+//1993 Wealth (12)
+
 reg netass_93 lbiomom lbiodad afqt89 hgcomp isib black hispanic age imomborn /// 
 idadborn drunkdad drunkmom imom_lhs imom_ghs idad_lhs idad_ghs cob_usa /// 
 i.regon_dum [iweight=wgt] if female, robust
 
 eststo
 
-*table four
+//table four
 
 esttab, r2 se
 
 eststo clear
 
-*generate variables no two parents & variable first reason parents left 
+//generate variables no two parents & variable first reason parents left 
+
 gen notwo_bio = 1
 	replace notwo_bio = 0 if l_biomom 
 gen pdivor = p_divor if notwo_bio 
@@ -243,7 +247,7 @@ egen live_arrange = rowtotal(pdivor pdied pown pmarry pill pmilit prun ///
 pcourt pcolleg pother punknow)
 gen first_res = (live_arrange == 1) 
 
-*table five
+//table five
 
 sum pdivor pdied pown pmarry pill pmilit prun pcourt ///
 pcolleg pother punknow if first_res 
@@ -251,11 +255,11 @@ pcolleg pother punknow if first_res
 sum pdivor pdied pown pmarry pill pmilit prun pcourt ///
 pcolleg pother punknow [iweight=wgt]
 
-*checking for differences in between notwo_bio's 
+//checking for differences in between notwo_bio's 
 
 sum notwo_bio
 
-*generate the two new variables (dad died, mom died) 
+//generate the two new variables (dad died, mom died) 
 
 gen minusddie = (18 - age_ddie)
 	replace minusddie = 0 if dad_died == 0 
@@ -268,9 +272,9 @@ gen minusmdie = (18 - age_mdie)
 	replace minusmdie = 0 if age_mdie > l_biomom 
 	replace minusmdie = minusmdie/10
 	
-*table six
+//table six
 
-*Sons AFQT
+//Sons AFQT
 
 reg afqt89 lbiomom lbiodad minusddie minusmdie black hispanic age /// 
 imomborn idadborn drunkdad drunkmom imom_lhs imom_ghs idad_lhs idad_ghs /// 
@@ -279,7 +283,7 @@ cob_usa isib i.regon_dum [iweight=wgt] if male, robust
 test minusddie=minusmdie 
 eststo
 
-*Daugthers AFQT
+//Daugthers AFQT
 
 reg afqt89 lbiomom lbiodad minusddie minusmdie black hispanic age /// 
 imomborn idadborn drunkdad drunkmom imom_lhs imom_ghs idad_lhs idad_ghs /// 
@@ -288,7 +292,7 @@ cob_usa isib i.regon_dum [iweight=wgt] if female, robust
 test minusddie=minusmdie 
 eststo
 
-*Sons Educational Attainment
+//Sons Educational Attainment
 
 reg hgcomp lbiomom lbiodad minusddie minusmdie black hispanic age /// 
 imomborn idadborn drunkdad drunkmom imom_lhs imom_ghs idad_lhs idad_ghs /// 
@@ -297,7 +301,7 @@ cob_usa i.regon_dum isib [iweight=wgt] if male, robust
 test minusddie=minusmdie
 eststo
 
-*Daughters Educational Attainment
+//Daughters Educational Attainment
 
 reg hgcomp lbiomom lbiodad minusddie minusmdie black hispanic age /// 
 imomborn idadborn drunkdad drunkmom imom_lhs imom_ghs idad_lhs idad_ghs /// 
@@ -306,7 +310,7 @@ cob_usa i.regon_dum isib [iweight=wgt] if female, robust
 test minusddie=minusmdie 
 eststo
 
-*Sons Married in 1993
+//Sons Married in 1993
 reg marit93 lbiomom lbiodad minusddie minusmdie black hispanic age /// 
 imomborn idadborn drunkdad drunkmom imom_lhs imom_ghs idad_lhs idad_ghs /// 
 cob_usa isib i.regon_dum [iweight=wgt] if male, robust
@@ -314,7 +318,7 @@ cob_usa isib i.regon_dum [iweight=wgt] if male, robust
 test minusddie=minusmdie 
 eststo
 
-*Daughters Married in 1993
+//Daughters Married in 1993
 
 reg marit93 lbiomom lbiodad minusddie minusmdie black hispanic age /// 
 imomborn idadborn drunkdad drunkmom imom_lhs imom_ghs idad_lhs idad_ghs /// 
@@ -323,7 +327,7 @@ cob_usa isib i.regon_dum [iweight=wgt] if female, robust
 test minusddie=minusmdie 
 eststo
 
-*Sons Earnings in 1993
+//Sons Earnings in 1993
 
 reg rwage93 lbiomom lbiodad minusddie minusmdie black hispanic age /// 
 imomborn idadborn drunkdad drunkmom imom_lhs imom_ghs idad_lhs idad_ghs /// 
@@ -332,7 +336,7 @@ cob_usa isib i.regon_dum [iweight=wgt] if male, robust
 test minusddie=minusmdie 
 eststo
 
-*Daughters Earnings in 1993
+//Daughters Earnings in 1993
 
 reg rwage93 lbiomom lbiodad minusddie minusmdie black hispanic age /// 
 imomborn idadborn drunkdad drunkmom imom_lhs imom_ghs idad_lhs idad_ghs /// 
@@ -341,7 +345,7 @@ cob_usa isib i.regon_dum [iweight=wgt] if female, robust
 test minusddie=minusmdie 
 eststo
 
-*table six
+//table six
 
 esttab, se
 
